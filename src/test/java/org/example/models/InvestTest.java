@@ -1,6 +1,5 @@
-package org.example.Models;
+package org.example.models;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
 import java.time.Month;

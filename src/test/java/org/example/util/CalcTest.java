@@ -1,14 +1,10 @@
-package org.example.Util;
+package org.example.util;
 
-import org.example.Models.Inv;
-import org.example.Models.Invest;
-import org.example.Models.KeyAnalyzers;
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
+import org.example.models.Invest;
+import org.example.models.KeyAnalyzers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.dsig.keyinfo.KeyName;
 import java.time.Month;
 import java.util.HashMap;
 
