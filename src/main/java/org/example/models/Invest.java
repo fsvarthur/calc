@@ -1,6 +1,7 @@
 package org.example.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
 public class Invest extends Inv implements Serializable {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String nome;
     private Long value;

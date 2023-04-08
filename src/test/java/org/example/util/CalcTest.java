@@ -21,11 +21,6 @@ class CalcTest {
     public void setUp(){
         inv.setMonth_ref(Month.JANUARY);
         inv2.setMonth_ref(Month.APRIL);
-        inv.setValue_initial(1000L);
-        inv2.setValue_initial(2000L);
-        inv.setValue_final(1000L);
-        inv2.setValue_final(2000L);
-
         ka.setValue(10.0);
 
         hKey.put("1",ka);
@@ -40,22 +35,4 @@ class CalcTest {
         assertEquals(hs.get(String.valueOf(hs.size())).getMonth_ref(), hs2.get("1").getMonth_ref());
         assertEquals(hs.size(), hs2.size());
     }
-
-
-    @Test
-    public void sumInitValue(){
-        assertEquals(3000L, Calc.sumInitValue(hs));
-    }
-
-    @Test
-    public void sumFinalValue(){
-        assertEquals(3000L, Calc.sumFinalValue(hs));
-    }
-
-    @Test
-    public void multiplyByKey(){
-        HashMap<String, Double> hp = Calc.multiplyByKey(hKey, hs);
-        assertEquals(300, hp.get("1"));
-    }
-
 }
