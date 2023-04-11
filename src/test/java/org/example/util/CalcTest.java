@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Month;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalcTest {
     Invest inv = new Invest();
