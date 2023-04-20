@@ -47,13 +47,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math-parent -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math-parent</artifactId>
-            <version>4.0-beta1</version>
-            <type>pom</type>
-        </dependency>
         <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>

@@ -7,10 +7,8 @@ import java.util.List;
 
 public interface InvestService {
     List<Invest> getAllInvestments();
-    InvestDTO getInvestment(InvestDTO invest);
-
-    //TODO put
-    //TODO delete
-    //TODO post
-    //TODO getKeyById
+    InvestDTO getInvestmentById(Long Id);
+    void updateInvestment(InvestDTO invest, Long Id);
+    void deleteInvestment(Long id);
+    void createInvestment(InvestDTO invest);
 }
