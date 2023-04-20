@@ -1,0 +1,2 @@
+add-library /tmp/postgresql.jar
+deploy --name calc --contextroot / /tmp/calc.war
