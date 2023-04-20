@@ -7,12 +7,15 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.example.models.Invest;
+import org.example.models.KeyAnalyzers;
 import org.example.models.dto.InvestDTO;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
@@ -46,7 +49,7 @@ public class InvestServiceImpl implements InvestService{
     }
 
     @Override
-    public void updateInvestment(InvestDTO invest, Long Id) {
+    public void updateInvestment(Invest invest, Long Id) {
         entityManager.createQuery("UPDATE Invest SET name=:nm, value=:val WHERE id LIKE :id", Invest.class)
                 .setParameter("nm", invest.getName()).setParameter("val", invest.getValue())
                 .setParameter("id", Id);
@@ -63,5 +66,11 @@ public class InvestServiceImpl implements InvestService{
         entityManager.createQuery("INSERT INTO Invest(id, name, value) VALUES (:id, :name, :val)")
                 .setParameter("id", invest.getId()).setParameter("name", invest.getName())
                 .setParameter("val", invest.getValue());
+    }
+
+    @Override
+    public List<Invest> getInvestmentByMonth(InvestDTO invest) {
+        return entityManager.createQuery("SELECT Invest FROM Invest i WHERE i.month_ref LIKE :month",
+                Invest.class).setParameter("month", invest.getMonth_ref()).getResultList();
     }
 }

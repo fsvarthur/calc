@@ -14,15 +14,15 @@ public class Invest extends Inv implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private String nome;
+    private String name;
     private Long value;
 
     public Invest() {
     }
 
-    public Invest(Long id, String nome, Long value) {
+    public Invest(Long id, String name, Long value) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.value = value;
     }
 
@@ -34,12 +34,12 @@ public class Invest extends Inv implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getValue() {
