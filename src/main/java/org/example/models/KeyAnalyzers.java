@@ -1,16 +1,15 @@
 package org.example.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name = "keys")
+@Table(name = "Keys")
 public class KeyAnalyzers extends Inv implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private double value;

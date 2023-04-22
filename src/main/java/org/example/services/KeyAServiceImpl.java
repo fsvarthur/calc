@@ -16,7 +16,7 @@ public class KeyAServiceImpl implements KeyAService {
     private EntityManager em;
     @Override
     public List<KeyAnalyzers> getAllKeysAnalyzers() {
-        return em.createQuery("SELECT i FROM KeyAnalyzers i", KeyAnalyzers.class ).getResultList();
+        return em.createQuery("SELECT k FROM Keys k", KeyAnalyzers.class ).getResultList();
     }
 
     @Override
@@ -41,13 +41,13 @@ public class KeyAServiceImpl implements KeyAService {
 
     @Override
     public KeyAnalyzers getKeyAnalyzerById(Long Id) {
-        return em.createQuery("SELECT i FROM Keys i WHERE i.id LIKE :id",
+        return em.createQuery("SELECT k FROM Keys k WHERE k.id LIKE :id",
                 KeyAnalyzers.class).setParameter("id", Id).getSingleResult();
     }
 
     @Override
     public List<KeyAnalyzers> getKeystByMonth(KeyAnalyzers invest) {
-        return new ArrayList<>(em.createQuery("SELECT Invest FROM Invest i WHERE i.month_ref LIKE :month",
+        return new ArrayList<>(em.createQuery("SELECT k FROM Keys k WHERE k.month_ref LIKE :month",
                 KeyAnalyzers.class).setParameter("month", invest.getMonth_ref()).getResultList());
     }
 }

@@ -7,15 +7,12 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.example.models.Invest;
-import org.example.models.KeyAnalyzers;
 import org.example.models.dto.InvestDTO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
@@ -43,9 +40,9 @@ public class InvestServiceImpl implements InvestService{
     }
 
     @Override
-    public InvestDTO getInvestmentById(Long Id) {
-        return (InvestDTO) entityManager.createQuery("SELECT invest from Invest i where i.id LIKE :id",
-                Invest.class).setParameter("id", Id).getResultList();
+    public Invest getInvestmentById(Long Id) {
+        return entityManager.createQuery("SELECT i FROM Invest i WHERE i.id LIKE :id",
+                Invest.class).setParameter("id", Id).getSingleResult();
     }
 
     @Override
@@ -57,20 +54,20 @@ public class InvestServiceImpl implements InvestService{
 
     @Override
     public void deleteInvestment(Long Id) {
-        entityManager.createQuery("DELETE i FROM Invest I WHERE i.id LIKE :id")
+        entityManager.createQuery("DELETE i FROM Invest i WHERE i.id LIKE :id")
                 .setParameter("id", Id);
     }
 
     @Override
-    public void createInvestment(InvestDTO invest) {
+    public void createInvestment(Invest invest) {
         entityManager.createQuery("INSERT INTO Invest(id, name, value) VALUES (:id, :name, :val)")
                 .setParameter("id", invest.getId()).setParameter("name", invest.getName())
                 .setParameter("val", invest.getValue());
     }
 
     @Override
-    public List<Invest> getInvestmentByMonth(InvestDTO invest) {
-        return entityManager.createQuery("SELECT Invest FROM Invest i WHERE i.month_ref LIKE :month",
+    public List<Invest> getInvestmentByMonth(Invest invest) {
+        return entityManager.createQuery("SELECT i FROM Invest i WHERE i.month_ref LIKE :month",
                 Invest.class).setParameter("month", invest.getMonth_ref()).getResultList();
     }
 }

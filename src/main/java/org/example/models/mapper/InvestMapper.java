@@ -10,4 +10,7 @@ public interface InvestMapper {
 
     @Mapping(source= "month_ref", target ="month_ref")
     Invest investDTOtoInvest(InvestDTO invest);
+
+    @Mapping(source = "month_ref", target = "month_ref")
+    InvestDTO investToInvestDTO(Invest invest);
 }

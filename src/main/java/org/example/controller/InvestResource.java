@@ -40,8 +40,8 @@ public class InvestResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public InvestDTO getInvestmentByID(@PathParam("id") Long Id){
-        LOG.info("Get invest by Id " + Id);
-        return investService.getInvestmentById(Id);
+        LOG.info("Got invest for Id " + Id);
+        return mapper.investToInvestDTO(investService.getInvestmentById(Id));
     }
 
     @POST @Path("/{id}")
@@ -51,6 +51,8 @@ public class InvestResource {
             investService.updateInvestment(mapper.investDTOtoInvest(investDTO), id);
             LOG.info("Updated investment with id"+ id);
         }catch (Exception ex){
+            LOG.warn("Exception " + ex);
+        }finally {
             LOG.warn("Exception when tried to update investment with " + id);
         }
     }
@@ -58,8 +60,8 @@ public class InvestResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void createInvestment(InvestDTO invest) throws Exception{
-        investService.createInvestment(invest);
-        LOG.info("Create investment");
+        investService.createInvestment(mapper.investDTOtoInvest(invest));
+        LOG.info("Created investment with id ", invest.getId());
     }
 
     @DELETE @Path("/{id}")
@@ -71,7 +73,7 @@ public class InvestResource {
 
     @GET @Path("/{month}")
     public Map<Invest, List<Double>> getInvestmentAndKeysByMonth(InvestDTO investDTO, KeyAnalyzers keyAnalyzers){
-        List<Invest> investList = investService.getInvestmentByMonth(investDTO);
+        List<Invest> investList = investService.getInvestmentByMonth(mapper.investDTOtoInvest(investDTO));
         List<KeyAnalyzers> keyAnalyzersList = keyAService.getKeystByMonth(keyAnalyzers);
         Map<Invest, List<Double>> mapInvestTimesKeys = new HashMap<>();
         investList.stream().map(i ->{
