@@ -9,6 +9,9 @@
     </option>
   </component>
   <component name="ProjectResources">
+    <resource url="http://java.sun.com/jsf/core" location="$PROJECT_DIR$" />
+    <resource url="http://java.sun.com/jsf/facelets" location="$PROJECT_DIR$" />
+    <resource url="http://java.sun.com/jsf/html" location="$PROJECT_DIR$" />
     <xml-schema-version>XMLSchema_1_1</xml-schema-version>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="temurin-17" project-jdk-type="JavaSDK">

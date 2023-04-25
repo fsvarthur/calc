@@ -7,16 +7,14 @@ import org.junit.jupiter.api.Test;
 import java.time.Month;
 
 class InvestTest {
-    Invest inv = new Invest();
+    Invest inv = new Invest(1L,"CDB Itau",1000L);
     @BeforeEach
     void setUp() {
-        inv.setId(1L);
-        inv.setNome("CDB Itau");
         inv.setMonth_ref(Month.JANUARY);
     }
     @Test
     void getNome() {
-        Assertions.assertEquals("CDB Itau", inv.getNome());
+        Assertions.assertEquals("CDB Itau", inv.getName());
     }
     @Test
     void getId() {
