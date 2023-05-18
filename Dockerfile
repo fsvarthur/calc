@@ -1,4 +1,4 @@
-FROM payara/server-full:5.2022.4
+FROM payara/server-web:6.2023.2-jdk17
 
 COPY target/postgresql.jar /tmp
 COPY target/calc.war /tmp

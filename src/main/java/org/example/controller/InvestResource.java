@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Path("/invests")
@@ -39,9 +40,10 @@ public class InvestResource {
     @GET @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public InvestDTO getInvestmentByID(@PathParam("id") Long Id){
+    public List<InvestDTO> getInvestmentByID(@PathParam("id") Long Id){
+        //public Response
         LOG.info("Got invest for Id " + Id);
-        return mapper.investToInvestDTO(investService.getInvestmentById(Id));
+        return mapper.investToInvestDTO(investService.getInvestmentsById(Id));
     }
 
     @POST @Path("/{id}")
@@ -75,12 +77,6 @@ public class InvestResource {
     public Map<Invest, List<Double>> getInvestmentAndKeysByMonth(InvestDTO investDTO, KeyAnalyzers keyAnalyzers){
         List<Invest> investList = investService.getInvestmentByMonth(mapper.investDTOtoInvest(investDTO));
         List<KeyAnalyzers> keyAnalyzersList = keyAService.getKeystByMonth(keyAnalyzers);
-        Map<Invest, List<Double>> mapInvestTimesKeys = new HashMap<>();
-        investList.stream().map(i ->{
-            return keyAnalyzersList.stream().map( ka -> {
-                return mapInvestTimesKeys.put(i, Collections.singletonList(i.getValue() * ka.getValue()));
-            });
-        });
-        return mapInvestTimesKeys;
+        return investService.getInvestmentAndKeysByMonth(investList, keyAnalyzersList);
     }
 }
